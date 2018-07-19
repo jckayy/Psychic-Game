@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Psychic-Game</title>
+</head>
+
+<body>
+
+  <div id="game">
+    <p><h1>Psychic-Game</h1></p>
+    <p>Press a letter to start!</p>
+  </div>
+
+  <script type="text/javascript">
+    // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+    var computerChoices = ["g","e","n","i","u","s"];
+
+    // Creating variables to hold the number of wins, losses, and ties. They start at 0.
+    var wins = 0;
+    var losses = 0;
+    var guessLeft = 9;
+    var guessSoFar = [];
+
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+
+      // Determines which key was pressed.
+      var userGuessOriginal = event.key;
+      var userGuess = userGuessOriginal.toLowerCase();
+
+      // Randomly chooses a choice from the options array. This is the Computer's guess.
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+     
+        
+        if ((userGuess === "a") || (userGuess === "b") || (userGuess === "c") || (userGuess === "d") || (userGuess === "e") || (userGuess === "f") || (userGuess === "g") || (userGuess === "h") || (userGuess === "i") || (userGuess === "j") || (userGuess === "k") || (userGuess === "l") || (userGuess === "m") || (userGuess === "n") || (userGuess === "o") || (userGuess === "p") || (userGuess === "q") || (userGuess === "r") || (userGuess === "s") || (userGuess === "t") || (userGuess === "u") || (userGuess === "v") || (userGuess === "w") || (userGuess === "x") || (userGuess === "y") || (userGuess === "z")) 
+        
+        {
+        
+        if (guessLeft>0 && userGuess === computerGuess){
+          wins++;
+          guessLeft = 9;
+          guessSoFar = [];
+          }
+        
+        if(guessLeft>0 && userGuess!==computerGuess){
+          guessLeft--;
+          guessSoFar.push(userGuessOriginal);
+        }
+
+        if (guessLeft==0 && userGuess === computerGuess){
+          wins++;
+          guessLeft = 9;
+          guessSoFar = [];
+          }
+        
+        if(guessLeft==0 && userGuess!==computerGuess){
+          losses++;
+          guessLeft = 9;
+          guessSoFar = [];
+        }
+
+
+        // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
+        var html =
+          "<p> <h1>The Psychic Game</h1> </p>"+
+          "<p> Guess what letters I am thnking of </p>" +
+          "<p>You chose: " + userGuessOriginal + "</p>" +
+          "<p>What I am thinking is: " + computerGuess + "</p>" +
+          "<p>wins: " + wins + "</p>" +
+          "<p>losses: " + losses + "</p>" +
+          "<p>Guesses Left: " + guessLeft + "</p>" +
+          "<p>Your guesses so far: "+ guessSoFar + " " + "</p>";
+        
+        console.log(guessSoFar);
+        console.log("test");
+
+
+        // Set the inner HTML contents of the #game div to our html string
+        //document.querySelector("#game").innerHTML = html;
+        document.querySelector("#game").innerHTML = html;
+      }
+    };
+  </script>
+
+</body>
+
+</html>
